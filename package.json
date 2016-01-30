@@ -4,13 +4,15 @@
   "description": "travel awesome",
   "main": "./lib/index.js",
   "config": {
-    "sass_command": "./node_modules/node-sass/bin/node-sass"
+    "sass_command": "./node_modules/.bin/node-sass",
+    "browserify_command": "./node_modules/.bin/browserify"
   },
   "scripts": {
     "test": "npm run test",
     "clean": "rimraf lib",
     "build:js": "babel src -d lib",
     "build:css": "$npm_package_config_sass_command src/public/sass -o lib/public/css",
+    "build:clientjs": "$npm_package_config_browserify_command src/public/js/app.js -o lib/public/app.js",
     "build": "npm run build:js && npm run build:css",
     "start": "nodemon",
     "prestart": "npm run build",
