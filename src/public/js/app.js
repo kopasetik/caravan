@@ -17,8 +17,18 @@ app.directive('header', function() {
   }
 });
 
+app.directive('trip', function() {
+  return {
+    templateUrl: '/partials/trip.html'
+  }
+});
+
 app.controller('HomeController', ['$scope', function($scope) {
   $scope.start_date = "Jan 1";
   $scope.end_date = "Feb 1";
   $scope.location = "Paris";
+
+  $scope.getTimes = function(n) {
+    return new Array(n);
+  };
 }]);

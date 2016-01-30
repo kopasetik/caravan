@@ -1,11 +1,15 @@
 $black: #252525
 $gray: #626262
+$mediumgray: #979797
+$lightgray: #e2e2e2
+$orange: #FF8162
 
 html
   font-size: 100%
 
 body
   padding-top: 50px
+  background-color: #e2e2e2
 
 .caravan-nav
   background: white
@@ -43,3 +47,25 @@ body
 
   .when
     border-right: 1px solid $gray
+
+.trips
+  position: relative
+
+.trip
+  margin: 10px
+  .caption
+    padding: 10px 15px
+    background-color: white
+  .gallery
+    width: 100%
+    overflow: hidden
+  .title
+    font-size: 1.2rem
+    font-weight: bold
+    margin: 0
+  .cost
+    color: $mediumgray
+  .link
+    display: block
+    padding-top: 10px
+    color: $orange
