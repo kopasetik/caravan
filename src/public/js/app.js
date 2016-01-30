@@ -19,7 +19,7 @@ app.directive('header', function() {
 
 app.directive('trip', function() {
   return {
-    templateUrl: '/partials/trip.html'
+    templateUrl: '/partials/tripCard.html'
   }
 });
 
