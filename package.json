@@ -4,17 +4,28 @@
   "description": "travel awesome",
   "main": "./lib/index.js",
   "config": {
-    "sass_command": "./node_modules/node-sass/bin/node-sass"
+    "sass_command": "./node_modules/.bin/node-sass",
+    "browserify_command": "./node_modules/.bin/browserify"
   },
   "scripts": {
     "test": "npm run test",
     "clean": "rimraf lib",
+
+    "build": "npm run build:js && npm run build:css && npm run build:clientjs && npm run build:html",
     "build:js": "babel src -d lib",
     "build:css": "$npm_package_config_sass_command src/public/sass -o lib/public/css",
-    "build": "npm run build:js && npm run build:css",
-    "start": "nodemon",
-    "prestart": "npm run build",
-    "prebuild": "npm run clean && jade -P src/public/views/*.jade -o lib/public/views/",
+    "build:clientjs": "$npm_package_config_browserify_command src/public/js/app.js -o lib/public/app.js",
+    "build:html": "jade -P src/public/views/*.jade -o lib/public/views/",
+
+    "nodemon": "nodemon --watch src",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:clientjs' 'npm run watch:html'",
+    "watch:js": "babel src -d lib --watch",
+    "watch:css": "watch 'npm run build:css' src/public/sass",
+    "watch:clientjs": "watch 'npm run build:clientjs' src/public/js",
+    "watch:html": "watch 'npm run build:html' src/public/views",
+
+    "start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
+
     "live-reload": "live-reload --port 9091 lib",
     "lint": "eslint src"
   },
@@ -39,7 +50,10 @@
     "eslint": "^1.10.3",
     "jade": "^1.11.0",
     "live-reload": "^1.1.0",
-    "node-sass": "^3.4.2"
+    "node-sass": "^3.4.2",
+    "watch": "latest",
+    "nodemon": "latest",
+    "parallelshell": "latest"
   },
   "dependencies": {
     "bcrypt": "^0.8.5",
