@@ -10,13 +10,11 @@
   "scripts": {
     "test": "npm run test",
     "clean": "rimraf lib",
-
     "build": "npm run build:js && npm run build:css && npm run build:clientjs && npm run build:html && npm run copyimages",
     "build:js": "babel src -d lib",
     "build:css": "$npm_package_config_sass_command src/public/sass -o lib/public/css",
     "build:clientjs": "$npm_package_config_browserify_command src/public/js/app.js -o lib/public/app.js",
     "build:html": "jade --hierarchy -P src/public/views/ -o lib/public/views/",
-
     "nodemon": "nodemon --watch src",
     "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:clientjs' 'npm run watch:html' 'npm run watch:img'",
     "watch:js": "babel src -d lib --watch",
@@ -25,9 +23,7 @@
     "watch:html": "watch 'npm run build:html' src/public/views",
     "watch:img": "watch 'npm run copyimages' src/public/img",
     "copyimages": "cp -R src/public/img lib/public",
-
     "start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
-
     "live-reload": "live-reload --port 9091 lib",
     "lint": "eslint src"
   },
@@ -63,6 +59,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "kerberos": "0.0.18",
+    "moment": "^2.11.1",
     "mongodb": "^2.1.4",
     "mongoose": "^4.3.7",
     "request": "^2.69.0"
