@@ -1,3 +1,6 @@
+$black: #252525
+$gray: #e2e2e2
+
 html
   font-size: 100%
 
@@ -20,3 +23,23 @@ body
 
   &.home
     background-image: url('/img/home_hero.png')
+
+.pickers
+  height: 40px
+  background-color: $black
+  display: flex
+  color: white
+
+  .icon
+    height: 20px
+    width: 20px
+    margin-right: 5px
+
+  .where, .when
+    width: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .when
+    border-right: 1px solid $gray
