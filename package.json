@@ -18,7 +18,7 @@
     "build:html": "jade --hierarchy -P src/public/views/ -o lib/public/views/",
 
     "nodemon": "nodemon --watch src",
-    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:clientjs' 'npm run watch:html' 'npm run copyimages'",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:clientjs' 'npm run watch:html' 'npm run watch:img'",
     "watch:js": "babel src -d lib --watch",
     "watch:css": "watch 'npm run build:css' src/public/sass",
     "watch:clientjs": "watch 'npm run build:clientjs' src/public/js",
