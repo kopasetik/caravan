@@ -48,6 +48,7 @@
     "express-session": "^1.13.0",
     "kerberos": "0.0.18",
     "mongodb": "^2.1.4",
-    "mongoose": "^4.3.7"
+    "mongoose": "^4.3.7",
+    "request": "^2.69.0"
   }
 }
