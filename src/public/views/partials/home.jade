@@ -1,0 +1,14 @@
+header
+
+.hero.home
+
+.pickers
+  .when
+    img.icon(src='/img/caravan_calendar.svg')
+    .txt {{ start_date }} - {{ end_date }}
+  .where
+    img.icon(src='/img/caravan_world.svg')
+    .txt {{ location }}
+
+.trips
+  trip(ng-repeat="t in getTimes(3) track by $index" ng-model='t')
