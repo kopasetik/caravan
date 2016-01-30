@@ -1,6 +1,10 @@
 # auto-generated library stuff
 lib
 
+config stuff
+.env
+.api_env
+
 # Logs
 logs
 *.log
