@@ -4,6 +4,7 @@ lib
 config stuff
 .env
 .api_env
+api_env.js
 
 # Logs
 logs
