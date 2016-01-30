@@ -21,7 +21,6 @@
     "watch": "watch 'npm run build' src",
     "start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
 
-    "prebuild": "npm run clean",
     "live-reload": "live-reload --port 9091 lib",
     "lint": "eslint src"
   },
