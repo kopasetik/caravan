@@ -13,7 +13,7 @@
     "build:js": "babel src -d lib",
     "build:css": "$npm_package_config_sass_command src/public/sass -o lib/public/css",
     "build:clientjs": "$npm_package_config_browserify_command src/public/js/app.js -o lib/public/app.js",
-    "build": "npm run build:js && npm run build:css",
+    "build": "npm run build:js && npm run build:css && npm run build:clientjs",
     "start": "nodemon",
     "prestart": "npm run build",
     "prebuild": "npm run clean && jade -P src/public/views/*.jade -o lib/public/views/",
