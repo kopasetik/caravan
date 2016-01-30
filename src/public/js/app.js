@@ -6,6 +6,9 @@ app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
     templateUrl: '/partials/home.html',
     controller: 'HomeController'
+  }).when('/trips/:tripId', {
+    templateUrl: '/partials/trip.html',
+    controller: 'TripController'
   }).otherwise({
     redirectTo: '/home'
   });
@@ -31,4 +34,9 @@ app.controller('HomeController', ['$scope', function($scope) {
   $scope.getTimes = function(n) {
     return new Array(n);
   };
+}]);
+
+app.controller('TripController', ['$scope', '$routeParams', function($scope, $routeParams) {
+  $scope.tripId = $routeParams.tripId;
+  $scope.title = "Scenery & Scotch";
 }]);
