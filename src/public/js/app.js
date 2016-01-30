@@ -3,10 +3,19 @@ var app = angular.module('caravan', [
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: '/partials/login.html',
-    controller: 'LoginController'
+  $routeProvider.when('/home', {
+    templateUrl: '/partials/home.html',
+    controller: 'HomeController'
   }).otherwise({
-    redirectTo: '/login'
+    redirectTo: '/home'
   });
+}]);
+
+app.directive('header', function() {
+  return {
+    templateUrl: '/partials/header.html'
+  }
+});
+
+app.controller('HomeController', ['$scope', function($scope) {
 }]);
