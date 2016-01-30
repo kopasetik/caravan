@@ -8,16 +8,16 @@ const TripSchema = new Schema({
   endDate: Date,
   location: String,
   description: String,
-  duration: Number,
+  duration: String,
   price: Number,
   distance: Number,
   reviews:[{
-    reviewer: ObjectId,
+    reviewer: Schema.Types.ObjectId,
     rating: Number,
     text: String
   }],
   members: [{
-    userId: ObjectId
+    userId: Schema.Types.ObjectId
   }]
 })
 

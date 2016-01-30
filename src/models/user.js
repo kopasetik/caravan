@@ -7,8 +7,9 @@ const UserSchema = new Schema({
   password: String,
   email: String,
   friends: [{
-    userId: ObjectId
-  }]
+    userId: Schema.Types.ObjectId
+  }],
+  photoUrl: String
 })
 
 module.exports = mongoose.model('User', UserSchema)

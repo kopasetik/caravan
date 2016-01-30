@@ -1,5 +1,5 @@
 const
-  // express = require('express'),
+  express = require('express'),
   bcrypt = require('bcrypt'),
   User = require('../models/user')
 
@@ -17,13 +17,34 @@ router.route('/addfriend')
 router.route('/seefriends')
   .get(findFriends)
 
-router.route('/taketrip')
-  .post(addTrip)
-
-router.route('/seetrips')
-  .get(findTrips)
-
 router.route('/logout')
   .all(logoutUser)
 
+router.route('/signup')
+  .all(createUser)
+
 module.exports = exports = router
+
+function checkForUser (req, res){
+
+}
+
+function updateUser (req, res){
+
+}
+
+function addFriend (req, res){
+
+}
+
+function findFriends (req, res){
+
+}
+
+function logoutUser (req, res){
+
+}
+
+function createUser (req, res){
+  
+}

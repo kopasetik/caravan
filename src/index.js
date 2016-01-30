@@ -1,6 +1,6 @@
 const
   express = require('express'),
-  express = require('express-session'),
+  session = require('express-session'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   path = require('path'),
@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public/views'))
 app.use('/js', express.static(__dirname + '/public/js'))
 app.use('/css', express.static(__dirname + '/public/css'))
 
-app.use('/api/users', require())
+app.use('/api/trips', require('./controllers/trip'))
 
 app.listen(PORT, function(){
   console.log('Caravan server running at Port', PORT)
