@@ -79,3 +79,34 @@ body
     display: block
     padding-top: 10px
     color: $orange
+
+.stats
+  background-color: white
+  display: flex
+  .cell
+    height: 70px
+    width: 33.33%
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    border-bottom: 1px solid $lightgray
+
+  .cell:not(:last-child)
+    border-right: 1px solid $lightgray
+  .val
+    color: $orange
+
+.details
+  .title
+    color: $gray
+    margin-bottom: 5px
+  background-color: white
+  padding: 20px
+
+button
+  background-color: $orange
+  color: white
+  border: none
+  width: 100%
+  height: 50px
