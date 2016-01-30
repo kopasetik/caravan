@@ -24,7 +24,7 @@
     "watch:clientjs": "watch 'npm run build:clientjs' src/public/js",
     "watch:html": "watch 'npm run build:html' src/public/views",
     "watch:img": "watch 'npm run copyimages' src/public/img",
-    "copyimages": "cp -R src/public/img lib/public/img",
+    "copyimages": "cp -R src/public/img lib/public",
 
     "start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
 
