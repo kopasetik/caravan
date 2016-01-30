@@ -1,0 +1,53 @@
+{
+  "name": "caravan",
+  "version": "1.0.0",
+  "description": "travel awesome",
+  "main": "./lib/index.js",
+  "config": {
+    "sass_command": "./node_modules/node-sass/bin/node-sass"
+  },
+  "scripts": {
+    "test": "npm run test",
+    "clean": "rimraf lib",
+    "build:js": "babel src -d lib",
+    "build:css": "$npm_package_config_sass_command src/public/sass -o lib/public/css",
+    "build": "npm run build:js && npm run build:css",
+    "start": "nodemon ./lib/index.js",
+    "prestart": "npm run build",
+    "prebuild": "npm run clean && jade -P src/public/views/*.jade -o lib/public/views/",
+    "live-reload": "live-reload --port 9091 lib",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kopasetik/caravan.git"
+  },
+  "keywords": [
+    "travel",
+    "daytrip"
+  ],
+  "author": "Akinwale Ogundipe, Joshua Hou, Caleb Hou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kopasetik/caravan/issues"
+  },
+  "homepage": "https://github.com/kopasetik/caravan#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "browserify": "^13.0.0",
+    "eslint": "^1.10.3",
+    "jade": "^1.11.0",
+    "live-reload": "^1.1.0",
+    "node-sass": "^3.4.2"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "kerberos": "0.0.18",
+    "mongodb": "^2.1.4",
+    "mongoose": "^4.3.7"
+  }
+}
