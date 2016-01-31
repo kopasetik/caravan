@@ -143,6 +143,21 @@ app.controller('TripController', [
     $scope.booked = true;
     tripRegistry[$scope.trip._id] = true;
   }
+
+  $scope.finishTrip = function() {
+    var modalResult = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: '/partials/finished-trip.html',
+      controller: 'FinishedTripController',
+    });
+
+    modalResult.result.then(function(result) {
+      if (result) {
+        $scope.booked = false;
+        tripRegistry[$scope.trip._id] = false;
+      }
+    });
+  }
 }]);
 
 app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip', function($scope, $uibModalInstance, trip) {
@@ -150,6 +165,16 @@ app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip'
 
   $scope.exit = function() {
     $uibModalInstance.dismiss('cancel');
+  }
+}]);
+
+app.controller('FinishedTripController', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
+  $scope.exit = function() {
+    $uibModalInstance.dismiss('cancel');
+  }
+
+  $scope.done = function() {
+    $uibModalInstance.close(true);
   }
 }]);
 

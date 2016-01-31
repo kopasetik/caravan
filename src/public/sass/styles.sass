@@ -177,39 +177,22 @@ button
     +content
     padding: 30px 0 50px
 
-  .field
-    padding-top: 10px
-    h6
-      padding-bottom: 5px
-    input
-      background-color: $lightgray
-      border: 1px solid $mediumgray
-
 .exit
   position: absolute
   top: 10px
   right: 10px
 
-.caravan-made
+=modal-layout
   position: relative
   text-align: center
   padding: 50px 0 0
 
+.caravan-made
+  +modal-layout
+
   h3
     color: $orange
     margin: 0 0 20px
-
-  .friends
-    display: flex
-    padding-bottom: 35px
-    justify-content: center
-    .friend
-      width: 100px
-      display: flex
-      align-items: center
-      justify-content: center
-      flex-direction: column
-    border-bottom: 1px solid $lightgray
 
   .cars
     padding-top: 50px
@@ -225,3 +208,37 @@ button
     border-radius: 0
     border: none
     padding: 8px 30px
+
+.finished-trip
+  +modal-layout
+
+  h3
+    color: $orange
+    margin-bottom: 30px
+
+  h4
+    margin-bottom: 20px
+
+  .question
+    margin-top: 30px
+
+
+.friends
+  display: flex
+  padding-bottom: 35px
+  justify-content: center
+  .friend
+    width: 100px
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+  border-bottom: 1px solid $lightgray
+
+.field
+  padding-top: 10px
+  h6
+    padding-bottom: 5px
+  input
+    background-color: $lightgray
+    border: 1px solid $mediumgray
