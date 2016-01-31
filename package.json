@@ -23,7 +23,9 @@
     "watch:html": "watch 'npm run build:html' src/public/views",
     "watch:img": "watch 'npm run copyimages' src/public/img",
     "copyimages": "cp -R src/public/img lib/public",
-    "start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
+    "dev-start": "parallelshell 'npm run live-reload' 'npm run nodemon' 'npm run watch'",
+    "start": "node lib/index.js",
+    "prestart": "npm run build",
     "live-reload": "live-reload --port 9091 lib",
     "lint": "eslint src"
   },
@@ -62,7 +64,6 @@
     "express-session": "^1.13.0",
     "kerberos": "0.0.18",
     "moment": "^2.11.1",
-    "mongodb": "^2.1.4",
     "request": "^2.69.0",
     "sabre-dev-studio": "^1.0.2"
   }
