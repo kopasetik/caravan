@@ -56,11 +56,40 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
   });
 
   $scope.pickWhereWhen = function() {
-    $uibModal.open({
+    var modalResult = $scope.whereWhenModal = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: '/partials/where-when.html',
-      controller: 'HomeController',
+      controller: 'WhereWhenController',
+      resolve: {
+        start_date: function() { return $scope.start_date; },
+        end_date: function() { return $scope.end_date; },
+        location: function() { return $scope.location; },
+      }
     });
+
+    modalResult.result.then(function(result) {
+      $scope.start_date = result.start_date;
+      $scope.end_date = result.end_date;
+      $scope.location = result.location;
+    });
+  }
+}]);
+
+app.controller('WhereWhenController', ['$scope', '$uibModalInstance', 'start_date', 'end_date', 'location', function($scope, $uibModalInstance, start_date, end_date, location) {
+  $scope.start_date = start_date;
+  $scope.end_date = end_date;
+  $scope.location = location;
+
+  $scope.save = function() {
+    $uibModalInstance.close({
+      start_date: $scope.start_date,
+      end_date: $scope.end_date,
+      location: $scope.location,
+    });
+  }
+
+  $scope.exit = function() {
+    $uibModalInstance.dismiss('cancel');
   }
 }]);
 

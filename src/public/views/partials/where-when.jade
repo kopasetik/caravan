@@ -5,16 +5,16 @@
     h4 When are you going?
     .field
       h6 START
-      input(type='text')
+      input(type='text', ng-model='start_date')
     .field
       h6 FINISH
-      input(type='text')
+      input(type='text', ng-model='end_date')
 
   .where
     img.icon(src='/img/caravan_world.svg')
     h4 Where are you going?
     .field
       h6 CITY
-      input(type='text')
+      input(type='text', ng-model='location')
 
-  button.join JOIN A CARAVAN
+  button.join(ng-click='save()') JOIN A CARAVAN
