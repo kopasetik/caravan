@@ -40,9 +40,9 @@ app.controller('NavController', ['$scope', '$window', function($scope, $window) 
 }]);
 
 app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
-  $scope.start_date = "Jan 1";
-  $scope.end_date = "Feb 1";
-  $scope.location = "Paris";
+  $scope.start_date = "JAN 1";
+  $scope.end_date = "FEB 1";
+  $scope.location = "PARIS";
   $scope.trips = [];
   $scope.home = true;
 
@@ -59,12 +59,9 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
     $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: '/partials/where-when.html',
-      controller: 'WhereWhenController',
+      controller: 'HomeController',
     });
   }
-}]);
-
-app.controller('WhereWhenController', ['$scope', function($scope) {
 }]);
 
 app.controller('TripController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
