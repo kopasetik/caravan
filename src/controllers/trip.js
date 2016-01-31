@@ -97,8 +97,8 @@ function fetchCityTrips(req, res){
   const MAX_TRIPS = 20;
     expedia.tripFind(city, ({activities}) => {
       activities = activities.slice(0, MAX_TRIPS);
-      res.send(activities.map(({title: name, duration='3h', distance='5 mi', imageUrl='trip_card.png', fromPrice: price}) => {
-        return {name, duration, price, location:city, distance, imageUrl }
+      res.send(activities.map(({title: name, duration='3h', distance='5 mi', imageUrl='trip_card.png', fromPrice: price, id: _id}) => {
+        return {name, duration, price, location:city, distance, imageUrl, _id }
       }));
     })
 }

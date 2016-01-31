@@ -62,7 +62,6 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
     url: '/api/trips/seetrips/' + $scope.location
   }).then(function success(response) {
     $scope.trips = response.data;
-    console.log(response.data);
   }, function error(response) {
   });
 
@@ -115,12 +114,17 @@ app.controller('TripController', [
   $scope.rating = 4;
   $scope.max = 5;
   $scope.booked = false;
+  $scope.image = '/img/trip_detail.png';
 
   $http({
     method: 'GET',
     url: '/api/trips/' + $routeParams.tripId
   }).then(function success(response) {
     $scope.trip = response.data;
+    var images = $scope.trip.images;
+    if (images.length > 0) {
+      $scope.image = images[0].large;
+    }
   }, function error(response) {});
 
   $scope.fullStars = function() {

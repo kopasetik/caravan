@@ -1,8 +1,9 @@
 header
 
 .hero.trip
+  img.specialhero(src='{{ trip.images[0].large }}')
   .banner(ng-show='booked') YOU ARE CURRENTLY ON THIS TRIP
-  h2 {{ trip.name }}
+  h2 {{ trip.pageTitle }}
 
 .stats
   .cell
@@ -10,14 +11,14 @@ header
     .val {{ trip.duration }}
   .cell
     small.title PRICE
-    .val ${{ trip.price }}
+    .val {{ trip.fromPrice }}
   .cell
     small.title DISTANCE
-    .val {{ trip.distance }} miles
+    .val 5 miles
 
 .details
   .sectiontitle DETAILS
-  p {{ trip.description }}
+  p(ng-bind="trip.description")
 
 .trip-detail-contacts(ng-show='booked')
   .sectiontitle YOUR CARAVAN
