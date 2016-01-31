@@ -32,14 +32,21 @@ app.directive('review', function() {
   }
 });
 
-app.controller('HomeController', ['$scope', function($scope) {
+app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
   $scope.start_date = "Jan 1";
   $scope.end_date = "Feb 1";
   $scope.location = "Paris";
+  $scope.trips = [];
 
-  $scope.getTimes = function(n) {
-    return new Array(n);
-  };
+  // get trips
+  $http({
+    method: 'GET',
+    url: '/api/trips/seetrips'
+  }).then(function success(response) {
+    $scope.trips = response.data;
+    console.log($scope.trips);
+  }, function error(response) {
+  });
 }]);
 
 app.controller('TripController', ['$scope', '$routeParams', function($scope, $routeParams) {

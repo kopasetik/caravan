@@ -11,4 +11,4 @@ header
     .txt {{ location }}
 
 .trips
-  trip(ng-repeat="t in getTimes(3) track by $index", ng-model='t')
+  trip(ng-repeat="trip in trips")

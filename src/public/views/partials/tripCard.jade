@@ -1,6 +1,6 @@
-a.trip(href="#/trips/{{ $index }}")
+a.trip(href="#/trips/{{ trip._id }}")
   img.gallery(src='/img/trip_card.png')
   .caption
-    h2.title Scenery & Scotch
-    .cost 3 - 4 hours, $40
+    h2.title {{ trip.name }}
+    .cost {{ trip.duration }}
     .link VIEW DETAILS
