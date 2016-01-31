@@ -3,6 +3,8 @@ var app = angular.module('caravan', [
   'ui.bootstrap'
 ]);
 
+// routes
+
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
     templateUrl: '/partials/home.html',
@@ -14,6 +16,12 @@ app.config(['$routeProvider', function($routeProvider) {
     redirectTo: '/home'
   });
 }]);
+
+// values
+
+app.value('tripRegistry', {});
+
+// directives
 
 app.directive('header', function() {
   return {
@@ -32,6 +40,8 @@ app.directive('review', function() {
     templateUrl: '/partials/review.html'
   }
 });
+
+// controllers
 
 app.controller('NavController', ['$scope', '$window', function($scope, $window) {
   $scope.back = function() {
@@ -93,10 +103,17 @@ app.controller('WhereWhenController', ['$scope', '$uibModalInstance', 'start_dat
   }
 }]);
 
-app.controller('TripController', ['$scope', '$routeParams', '$http', '$uibModal', function($scope, $routeParams, $http, $uibModal) {
+app.controller('TripController', [
+               '$scope',
+               '$routeParams',
+               '$http',
+               '$uibModal',
+               'tripRegistry',
+               function($scope, $routeParams, $http, $uibModal, tripRegistry) {
   $scope.trip = {}
   $scope.rating = 4;
   $scope.max = 5;
+  $scope.booked = false;
 
   $http({
     method: 'GET',
@@ -122,6 +139,9 @@ app.controller('TripController', ['$scope', '$routeParams', '$http', '$uibModal'
         trip: function() { return $scope.trip; }
       }
     });
+
+    $scope.booked = true;
+    tripRegistry[$scope.trip._id] = true;
   }
 }]);
 

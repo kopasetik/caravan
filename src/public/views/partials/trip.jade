@@ -1,6 +1,7 @@
 header
 
 .hero.trip
+  .banner(ng-show='booked') YOU ARE CURRENTLY ON THIS TRIP
   h2 {{ trip.name }}
 
 .stats
@@ -24,4 +25,5 @@ header
   review
   review
 
-button.join.navbar-fixed-bottom(ng-click='join()') JOIN A CARAVAN
+button.join.navbar-fixed-bottom(ng-click='join()', ng-hide='booked') JOIN A CARAVAN
+button.join.navbar-fixed-bottom(ng-click='finishTrip()', ng-show='booked') TRIP FINISHED
