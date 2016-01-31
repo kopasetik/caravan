@@ -35,18 +35,20 @@ body
 .hero
   height: 200px
   background-size: cover
-  color: white
   position: relative
 
   &.home
     background-image: url('/img/home_hero.png')
+
+  &.trip
+    background-image: url('/img/trip_detail.png')
 
   h2
     font-size: 1.3rem
     position: absolute
     bottom: 10px
     left: 10px
-
+    color: white
 .pickers
   height: 40px
   background-color: $black
@@ -70,26 +72,26 @@ body
 .trips
   position: relative
 
-.trip
-  margin: 10px
-  display: block
-  color: $black
-  .caption
-    padding: 10px 15px
-    background-color: white
-  .gallery
-    width: 100%
-    overflow: hidden
-  .title
-    font-size: 1.2rem
-    font-weight: bold
-    margin: 0
-  .cost
-    color: $mediumgray
-  .link
+  .trip
+    margin: 10px
     display: block
-    padding-top: 10px
-    color: $orange
+    color: $black
+    .caption
+      padding: 10px 15px
+      background-color: white
+    .gallery
+      width: 100%
+      overflow: hidden
+    .title
+      font-size: 1.2rem
+      font-weight: bold
+      margin: 0
+    .cost
+      color: $mediumgray
+    .link
+      display: block
+      padding-top: 10px
+      color: $orange
 
 .stats
   background-color: white
