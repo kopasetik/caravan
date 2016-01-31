@@ -188,7 +188,7 @@ app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip'
   });
 
   $scope.viewCars = function() {
-    $window.location = $scope.carUrl;
+    $window.open($scope.carUrl, '_blank');
   }
 
 }]);
