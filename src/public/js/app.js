@@ -57,13 +57,16 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
   $scope.home = true;
 
   // get trips
-  $http({
-    method: 'GET',
-    url: '/api/trips/seetrips/' + $scope.location
-  }).then(function success(response) {
-    $scope.trips = response.data;
-  }, function error(response) {
-  });
+  $scope.getTrips = function() {
+    $http({
+      method: 'GET',
+      url: '/api/trips/seetrips/' + $scope.location
+    }).then(function success(response) {
+      $scope.trips = response.data;
+    }, function error(response) {
+    });
+  }
+  $scope.getTrips();
 
   $scope.pickWhereWhen = function() {
     var modalResult = $uibModal.open({
@@ -81,6 +84,7 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
       $scope.start_date = result.start_date;
       $scope.end_date = result.end_date;
       $scope.location = result.location;
+      $scope.getTrips();
     });
   }
 }]);
