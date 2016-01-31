@@ -4,13 +4,12 @@ const
 
 const TripSchema = new Schema({
   name: String,
-  startDate: Date,
-  endDate: Date,
   location: String,
   description: String,
   duration: String,
-  price: Number,
-  distance: Number,
+  price: String,
+  distance: String,
+  imageUrl: String,
   reviews:[{
     reviewer: Schema.Types.ObjectId,
     rating: Number,

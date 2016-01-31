@@ -1,14 +1,29 @@
 const
+  Promise = require('bluebird'),
   express = require('express'),
   Trip = require('../models/trip'),
   User = require('../models/user'),
-  ObjectId = require('mongoose').Types.ObjectId
+  ObjectId = require('mongoose').Types.ObjectId,
+  expedia = Promise.promisifyAll(require('../api/expedia')),
+  async = require('async')
 
 const router = express.Router()
 
 // GET /api/trips/seetrips
 router.route('/seetrips')
-.get(findTrips)
+  .get(findTrips)
+
+// GET /api/trips/seetrips/Denver
+router.route('/seetrips/:city')
+  .get(fetchCityTrips)
+
+// GET /api/trips/seetrips/Denver/cars
+router.route('/seetrips/:city/cars')
+  .get(fetchCars)
+
+// GET /api/trips/init/Denver
+router.route('/init/:city')
+  .get(populateTripCollection)
 
 // GET /api/trips/43
 router.route('/:id')
@@ -38,10 +53,9 @@ module.exports = exports = router
 
 // GET /api/trips/43
 function findTrip(req, res) {
-  const id = new ObjectId(req.params.id)
-  Trip.findOne({'_id': id}, (err, doc) => {
-    if (err) return res.status(500).send(err)
-    if (doc) return res.send(doc)
+  const id = req.params.id
+  expedia.tripDetails({id}, (err, body) => {
+    res.send(JSON.parse(body))
   })
 }
 
@@ -67,11 +81,54 @@ function findMembers(req, res) {
   res.send('yo dog')
 }
 
+// GET /api/trips/seetrips/Denver/cars
+function fetchCars(req, res){
+  const city = req.params.city.toLowerCase()
+  expedia.getAirport(city, body => {
+    expedia.getCars(body.sr[0].a, (cars)=>{
+      res.send(cars.CarInfoList.CarInfo)
+    })
+  })
+}
+
+// GET /api/trips/seetrips/Denver
+function fetchCityTrips(req, res){
+  const city = req.params.city.toLowerCase()
+    expedia.tripFind(city, ({activities}) => {
+      res.send(activities)
+    })
+
+}
+
 // GET /api/trips/seetrips
 function findTrips(req, res) {
-  Trip.find({}, (err, docs) => {
-    if (err) return res.status(500).send(err)
-    res.send(docs)
+  const city = 'Denver'
+  expedia.tripFind(city, ({activities}) => {
+    res.send(activities.map(({title: name, duration='3h', distance='5 mi', imageUrl, fromPrice: price}) => {
+      return {name, duration, price, location:city, distance, imageUrl }
+    }))
+  })
+}
+
+// GET /api/trips/init/Denver
+function populateTripCollection(req, res){
+  const city = req.params.city
+  expedia.tripFind(city, ({activities}) => {
+    // res.send(activities)
+    async.mapSeries(activities, ({title: name, duration='3h', distance='5 mi', imageUrl, fromPrice: price}, next) => {
+      Trip.create(
+        {name, duration, price, location:city, distance, imageUrl },
+        (err, trip) => {
+          if (err) return res.status(500).send(err)
+          // res.send(trip)
+          return console.log(trip)
+        })
+    })
+    // async.mapSeries(activities, expedia.tripDetails, (err, results) => {
+    //     let bigChunk = results.join("")
+    //     bigChunk = JSON.parse(bigChunk)
+    //     res.end(bigChunk)
+    // })
   })
 }
 

@@ -54,7 +54,9 @@
     "parallelshell": "latest"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "bcrypt": "^0.8.5",
+    "bluebird": "^3.1.5",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
@@ -62,6 +64,7 @@
     "moment": "^2.11.1",
     "mongodb": "^2.1.4",
     "mongoose": "^4.3.7",
-    "request": "^2.69.0"
+    "request": "^2.69.0",
+    "sabre-dev-studio": "^1.0.2"
   }
 }
