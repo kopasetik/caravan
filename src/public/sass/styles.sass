@@ -132,6 +132,25 @@ body
   .val
     color: $orange
 
+.trip-detail-contacts
+  +content
+  background-color: $black
+  color: white
+  position: relative
+  .sectiontitle
+    color: white
+  .friends
+    border: none
+    padding-bottom: 5px
+    padding-top: 7px
+    .friend
+      width: 120px
+  .contact
+    position: absolute
+    color: $orange
+    top: 20px
+    right: 20px
+
 .sectiontitle
   color: $gray
   margin-bottom: 8px
@@ -252,6 +271,8 @@ button
     align-items: center
     justify-content: center
     flex-direction: column
+    .photo
+      padding-bottom: 7px
 
     a
       color: $orange

@@ -19,6 +19,20 @@ header
   .sectiontitle DETAILS
   p {{ trip.description }}
 
+.trip-detail-contacts(ng-show='booked')
+  .sectiontitle YOUR CARAVAN
+  .contact.sectiontitle CONTACT
+  .friends
+    .friend
+      img.photo(src='/img/caleb_small.png')
+      .name CALEB H.
+    .friend
+      img.photo(src='/img/wale_small.png')
+      .name YOU
+    .friend
+      img.photo(src='/img/josh_small.png')
+      .name JOSH X.
+
 .reviews
   .sectiontitle REVIEWS
   review
