@@ -59,9 +59,10 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
   // get trips
   $http({
     method: 'GET',
-    url: '/api/trips/seetrips'
+    url: '/api/trips/seetrips/' + $scope.location
   }).then(function success(response) {
     $scope.trips = response.data;
+    console.log(response.data);
   }, function error(response) {
   });
 

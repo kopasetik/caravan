@@ -94,10 +94,13 @@ function fetchCars(req, res){
 // GET /api/trips/seetrips/Denver
 function fetchCityTrips(req, res){
   const city = req.params.city.toLowerCase()
+  const MAX_TRIPS = 20;
     expedia.tripFind(city, ({activities}) => {
-      res.send(activities)
+      activities = activities.slice(0, MAX_TRIPS);
+      res.send(activities.map(({title: name, duration='3h', distance='5 mi', imageUrl='trip_card.png', fromPrice: price}) => {
+        return {name, duration, price, location:city, distance, imageUrl }
+      }));
     })
-
 }
 
 // GET /api/trips/seetrips
