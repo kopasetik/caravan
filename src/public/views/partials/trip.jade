@@ -3,7 +3,7 @@ header
 .hero.trip
   img.specialhero(src='{{ trip.images[0].large }}')
   .banner(ng-show='booked') YOU ARE CURRENTLY ON THIS TRIP
-  h2 {{ trip.pageTitle }}
+  h2(ng-bind-html="trip.pageTitle | sanitize")
 
 .stats
   .cell
@@ -18,7 +18,7 @@ header
 
 .details
   .sectiontitle DETAILS
-  p(ng-bind="trip.description")
+  p(ng-bind-html="trip.description | sanitize")
 
 .trip-detail-contacts(ng-show='booked')
   .sectiontitle YOUR CARAVAN

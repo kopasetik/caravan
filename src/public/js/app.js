@@ -185,3 +185,10 @@ app.controller('FinishedTripController', ['$scope', '$uibModalInstance', functio
   $scope.max = 5;
 }]);
 
+
+// filters
+app.filter("sanitize", ['$sce', function($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}]);
