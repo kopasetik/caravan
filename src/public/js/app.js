@@ -56,7 +56,7 @@ app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scop
   });
 
   $scope.pickWhereWhen = function() {
-    var modalResult = $scope.whereWhenModal = $uibModal.open({
+    var modalResult = $uibModal.open({
       animation: $scope.animationsEnabled,
       templateUrl: '/partials/where-when.html',
       controller: 'WhereWhenController',
@@ -93,7 +93,7 @@ app.controller('WhereWhenController', ['$scope', '$uibModalInstance', 'start_dat
   }
 }]);
 
-app.controller('TripController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+app.controller('TripController', ['$scope', '$routeParams', '$http', '$uibModal', function($scope, $routeParams, $http, $uibModal) {
   $scope.trip = {}
   $scope.rating = 4;
   $scope.max = 5;
@@ -112,4 +112,24 @@ app.controller('TripController', ['$scope', '$routeParams', '$http', function($s
   $scope.emptyStars = function() {
     return new Array($scope.max - $scope.rating);
   }
+
+  $scope.join = function() {
+    var modalResult = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: '/partials/found-a-caravan.html',
+      controller: 'FoundACaravanController',
+      resolve: {
+        trip: function() { return $scope.trip; }
+      }
+    });
+  }
 }]);
+
+app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip', function($scope, $uibModalInstance, trip) {
+  $scope.trip = trip;
+
+  $scope.exit = function() {
+    $uibModalInstance.dismiss('cancel');
+  }
+}]);
+
