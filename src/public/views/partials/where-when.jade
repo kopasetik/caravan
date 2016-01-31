@@ -1,17 +1,20 @@
 .where-when
-  img.icon(src='/img/exit.svg')
-  .where
+  img.exit.icon(src='/img/exit.svg')
+  .when
     img.icon(src='/img/caravan_calendar.svg')
     h4 When are you going?
-    label START
+    .field
+      h6 START
       input(type='text')
-    label FINISH
+    .field
+      h6 FINISH
       input(type='text')
 
-  .when
+  .where
     img.icon(src='/img/caravan_world.svg')
     h4 Where are you going?
-    label CITY
+    .field
+      h6 CITY
       input(type='text')
 
-    button.join JOIN A CARAVAN
+  button.join JOIN A CARAVAN
