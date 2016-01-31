@@ -1,5 +1,6 @@
 var app = angular.module('caravan', [
   'ngRoute',
+  'ui.bootstrap'
 ]);
 
 app.config(['$routeProvider', function($routeProvider) {
@@ -38,7 +39,7 @@ app.controller('NavController', ['$scope', '$window', function($scope, $window) 
   }
 }]);
 
-app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
+app.controller('HomeController', ['$scope', '$http', '$uibModal', function($scope, $http, $uibModal) {
   $scope.start_date = "Jan 1";
   $scope.end_date = "Feb 1";
   $scope.location = "Paris";
@@ -53,6 +54,17 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
     $scope.trips = response.data;
   }, function error(response) {
   });
+
+  $scope.pickWhereWhen = function() {
+    $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: '/partials/where-when.html',
+      controller: 'WhereWhenController',
+    });
+  }
+}]);
+
+app.controller('WhereWhenController', ['$scope', function($scope) {
 }]);
 
 app.controller('TripController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
