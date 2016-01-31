@@ -32,11 +32,18 @@ app.directive('review', function() {
   }
 });
 
+app.controller('NavController', ['$scope', '$window', function($scope, $window) {
+  $scope.back = function() {
+    $window.history.back();
+  }
+}]);
+
 app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
   $scope.start_date = "Jan 1";
   $scope.end_date = "Feb 1";
   $scope.location = "Paris";
   $scope.trips = [];
+  $scope.home = true;
 
   // get trips
   $http({
