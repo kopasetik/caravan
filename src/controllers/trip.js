@@ -6,6 +6,10 @@ const
 
 const router = express.Router()
 
+// GET /api/trips/seetrips
+router.route('/seetrips')
+.get(findTrips)
+
 // GET /api/trips/43
 router.route('/:id')
   .get(findTrip)
@@ -18,9 +22,6 @@ router.route('/:id/addmember')
 router.route('/:id/members')
   .get(findMembers)
 
-// GET /api/trips/seetrips
-router.route('/seetrips')
-  .get(findTrips)
 
 // GET /api/trips/43/confirm
 router.route('/:id/confirm')
@@ -68,7 +69,10 @@ function findMembers(req, res) {
 
 // GET /api/trips/seetrips
 function findTrips(req, res) {
-  res.send('yo dog')
+  Trip.find({}, (err, docs) => {
+    if (err) return res.status(500).send(err)
+    res.send(docs)
+  })
 }
 
 // GET /api/trips/43/confirm
