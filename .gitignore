@@ -1,10 +1,14 @@
 # auto-generated library stuff
 lib
 
-config stuff
+# config stuff
 .env
 .api_env
 api_env.js
+
+# seed data
+users.json
+trips.json
 
 # Logs
 logs
