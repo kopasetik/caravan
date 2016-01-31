@@ -58,7 +58,7 @@
   "dependencies": {
     "async": "^1.5.2",
     "babel": "latest",
-    "babel": "latest",
+    "babel-cli": "latest",
     "babel-preset-es2015": "latest",
     "bcrypt": "^0.8.5",
     "bluebird": "^3.1.5",
