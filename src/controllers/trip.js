@@ -3,7 +3,6 @@ const
   express = require('express'),
   Trip = require('../models/trip'),
   User = require('../models/user'),
-  ObjectId = require('mongoose').Types.ObjectId,
   expedia = Promise.promisifyAll(require('../api/expedia')),
   async = require('async')
 
@@ -29,15 +28,6 @@ router.route('/init/:city')
 router.route('/:id')
   .get(findTrip)
 
-// POST /api/trips/43/addmember
-router.route('/:id/addmember')
-  .post(addMember)
-
-// GET /api/trips/43/members
-router.route('/:id/members')
-  .get(findMembers)
-
-
 // GET /api/trips/43/confirm
 router.route('/:id/confirm')
   .get(confirmTrip)
@@ -57,28 +47,6 @@ function findTrip(req, res) {
   expedia.tripDetails({id}, (err, body) => {
     res.send(JSON.parse(body))
   })
-}
-
-// POST /api/trips/43/addmember
-function addMember(req, res) {
-  const
-    id = new ObjectId(req.params.id) /*,
-    email = req.session.email*/
-  User.findOne({email: 'joshuahou@gmail.com'}, (error, doc) => {
-    const {id: userId} = doc
-    Trip.findOneAndUpdate(
-      {'_id': id},
-      {$push: {members: {userId: userId}}},
-      {safe: true, upsert: true, new: true}, (err) => {
-      if (err) return res.status(500).send(err)
-      res.send('successfully updated')
-    })
-  })
-}
-
-// GET /api/trips/43/members
-function findMembers(req, res) {
-  res.send('yo dog')
 }
 
 // GET /api/trips/seetrips/Denver/cars

@@ -63,7 +63,6 @@
     "kerberos": "0.0.18",
     "moment": "^2.11.1",
     "mongodb": "^2.1.4",
-    "mongoose": "^4.3.7",
     "request": "^2.69.0",
     "sabre-dev-studio": "^1.0.2"
   }

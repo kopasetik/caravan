@@ -2,12 +2,9 @@ const
   express = require('express'),
   session = require('express-session'),
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
   path = require('path'),
   PORT = 3000,
   app = express()
-
-mongoose.connect('mongodb://localhost/expedia')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
