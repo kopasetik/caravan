@@ -1,26 +1,22 @@
 header
 
 .hero.home
-  h2(ng-bind="title")
+  h2 {{ trip.title }}
 
 .stats
   .cell
     small.title DURATION
-    .val 3.5 Hours
+    .val {{ trip.duration }}
   .cell
     small.title PRICE
-    .val $60.00
+    .val ${{ trip.price }}
   .cell
     small.title DISTANCE
-    .val 63 miles
+    .val {{ trip.distance }} miles
 
 .details
   .sectiontitle DETAILS
-  p.
-    Take a trip to the Scottish Highlands and enjoy some of the finest whiskey
-    the land has to offer. Nestled in the hills of Loch Ness, this gorgeous
-    brewery is truly a sight to behold. The Loch Ness Brewery has existed for
-    over 150 years, serving monster hunters through the ages.
+  p {{ trip.description }}
 
 .reviews
   .sectiontitle REVIEWS

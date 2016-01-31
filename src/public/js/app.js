@@ -49,12 +49,18 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
   });
 }]);
 
-app.controller('TripController', ['$scope', '$routeParams', function($scope, $routeParams) {
-  $scope.tripId = $routeParams.tripId;
-  $scope.title = "Scenery & Scotch";
-
+app.controller('TripController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+  $scope.trip = {}
   $scope.rating = 4;
   $scope.max = 5;
+
+  $http({
+    method: 'GET',
+    url: '/api/trips/' + $routeParams.tripId
+  }).then(function success(response) {
+    $scope.trip = response.data;
+    console.log($scope.trip);
+  }, function error(response) {});
 
   $scope.fullStars = function() {
     return new Array($scope.rating);
