@@ -18,17 +18,9 @@ router.route('/seetrips/:city')
 router.route('/seetrips/:city/cars')
   .get(fetchCars)
 
-// GET /api/trips/init/Denver
-router.route('/init/:city')
-  .get(populateTripCollection)
-
 // GET /api/trips/43
 router.route('/:id')
   .get(findTrip)
-
-// GET /api/trips/43/confirm
-router.route('/:id/confirm')
-  .get(confirmTrip)
 
 // router.route('/addreview')
 //   .post(sendReview)
@@ -78,10 +70,4 @@ function findTrips(req, res) {
       return {name, duration, price, location:city, distance, imageUrl }
     }))
   })
-}
-
-
-// GET /api/trips/43/confirm
-function confirmTrip(req, res) {
-  res.send('yo dog')
 }
