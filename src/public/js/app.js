@@ -176,5 +176,7 @@ app.controller('FinishedTripController', ['$scope', '$uibModalInstance', functio
   $scope.done = function() {
     $uibModalInstance.close(true);
   }
+
+  $scope.max = 5;
 }]);
 
