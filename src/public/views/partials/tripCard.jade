@@ -2,5 +2,5 @@ a.trip(href="#/trips/{{ trip._id }}")
   img.gallery(src='/img/trip_card.png')
   .caption
     h2.title {{ trip.name }}
-    .cost {{ trip.duration }}
+    .cost {{ trip.duration }}, ${{ trip.price }}
     .link VIEW DETAILS
