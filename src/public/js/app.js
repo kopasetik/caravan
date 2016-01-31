@@ -44,7 +44,6 @@ app.controller('HomeController', ['$scope', '$http', function($scope, $http) {
     url: '/api/trips/seetrips'
   }).then(function success(response) {
     $scope.trips = response.data;
-    console.log($scope.trips);
   }, function error(response) {
   });
 }]);
@@ -59,7 +58,6 @@ app.controller('TripController', ['$scope', '$routeParams', '$http', function($s
     url: '/api/trips/' + $routeParams.tripId
   }).then(function success(response) {
     $scope.trip = response.data;
-    console.log($scope.trip);
   }, function error(response) {});
 
   $scope.fullStars = function() {
