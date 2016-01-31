@@ -169,12 +169,28 @@ app.controller('TripController', [
   }
 }]);
 
-app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip', function($scope, $uibModalInstance, trip) {
+app.controller('FoundACaravanController', ['$scope', '$uibModalInstance', 'trip', '$http', '$window', function($scope, $uibModalInstance, trip, $http, $window) {
   $scope.trip = trip;
 
   $scope.exit = function() {
     $uibModalInstance.dismiss('cancel');
   }
+
+  $http({
+    method: 'GET',
+    url: '/api/trips/seetrips/' + $scope.location + '/cars'
+  }).then(function success(response) {
+    var cars = response.data;
+    var car = cars[0];
+    $scope.carUrl = car['DetailsUrl'];
+
+  }, function error(response) {
+  });
+
+  $scope.viewCars = function() {
+    $window.location = $scope.carUrl;
+  }
+
 }]);
 
 app.controller('FinishedTripController', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {

@@ -16,6 +16,6 @@
     h4 Rent a car
 
     img.car(src='/img/car1.png')
-    input.secondary-button(type='button', value='FIND CARS')
+    input.secondary-button(type='button', value='FIND CARS', ng-click='viewCars()', ng-disabled='!carUrl')
 
   button GET IN TOUCH
