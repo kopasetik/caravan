@@ -26,6 +26,12 @@ app.directive('trip', function() {
   }
 });
 
+app.directive('review', function() {
+  return {
+    templateUrl: '/partials/review.html'
+  }
+});
+
 app.controller('HomeController', ['$scope', function($scope) {
   $scope.start_date = "Jan 1";
   $scope.end_date = "Feb 1";
@@ -39,4 +45,15 @@ app.controller('HomeController', ['$scope', function($scope) {
 app.controller('TripController', ['$scope', '$routeParams', function($scope, $routeParams) {
   $scope.tripId = $routeParams.tripId;
   $scope.title = "Scenery & Scotch";
+
+  $scope.rating = 4;
+  $scope.max = 5;
+
+  $scope.fullStars = function() {
+    return new Array($scope.rating);
+  }
+
+  $scope.emptyStars = function() {
+    return new Array($scope.max - $scope.rating);
+  }
 }]);

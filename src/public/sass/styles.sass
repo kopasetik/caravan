@@ -7,12 +7,15 @@ $orange: #FF8162
 h1, h2, h3, h4, h5, h6
   margin: 0
 
+=content
+  padding: 20px
+
 html
   font-size: 100%
 
 body
   padding-top: 50px
-  background-color: #e2e2e2
+  background-color: $lightgray
 
 .caravan-nav
   background: white
@@ -99,12 +102,32 @@ body
   .val
     color: $orange
 
+.sectiontitle
+  color: $gray
+  margin-bottom: 8px
+  font-size: 0.8rem
+
 .details
-  .title
-    color: $gray
-    margin-bottom: 5px
+  +content
   background-color: white
-  padding: 20px
+  border-bottom: 1px solid $lightgray
+
+.reviews
+  +content
+  padding-bottom: 70px
+
+.review
+  padding-top: 20px
+  &:not(:last-child)
+    padding-top: 0
+  .author
+    padding-bottom: 5px
+  .stars
+    color: $orange
+    .glyphicon
+      font-size: 1.1rem
+      &:not(:last-child)
+        padding-right: 3px
 
 button
   background-color: $orange
