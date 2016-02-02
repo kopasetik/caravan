@@ -5,23 +5,16 @@ const
 const
   http = Promise.promisifyAll(require('http')),
   https = Promise.promisifyAll(require('https')),
-  request = Promise.promisifyAll(require('request')),
+  request = Promise.promisify(require('request')),
   expedia = {}
 
 expedia['tripFind'] = (locale, next) => {
-  // let body = '';
-  //callback version
-  request.get('http://terminal2.expedia.com/x/activities/search?location=' + locale + '&apikey=' + apiCode.key, (err, res, body)=>{
-    next(JSON.parse(body))
-  })
-  // .on('response', function (response) {
-  //   response.on('data', function (chunk) {
-  //     body += chunk;
-  //   });
-  //   response.on('end', function () {
-  //   });
-  // }).end();
-  // .on('error', (e)=>{console.log('DANGER WILL ROBINSON:', e.statusCode)})
+  // Promise
+  request({json: true, uri: `http://terminal2.expedia.com/x/activities/search?location=${locale}&apikey=${apiCode.key}`})
+    .then(res=> {
+      next(null, res.body.activities)
+    })
+    .catch(e=>console.error(e))
 }
 
 expedia['tripDetails'] = (item, next) => {

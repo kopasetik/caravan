@@ -37,17 +37,9 @@ router.route('/:id/addmember')
 router.route('/:id/members')
   .get(findMembers)
 
-
 // GET /api/trips/43/confirm
 router.route('/:id/confirm')
   .get(confirmTrip)
-
-// router.route('/addreview')
-//   .post(sendReview)
-//
-// router.route('/seereviews')
-//   .get(findReviews)
-
 
 module.exports = exports = router
 
@@ -94,7 +86,7 @@ function fetchCars(req, res){
 // GET /api/trips/seetrips/Denver
 function fetchCityTrips(req, res){
   const city = req.params.city.toLowerCase()
-    expedia.tripFind(city, ({activities}) => {
+    expedia.tripFind(city, (err, activities) => {
       res.send(activities)
     })
 
@@ -103,7 +95,7 @@ function fetchCityTrips(req, res){
 // GET /api/trips/seetrips
 function findTrips(req, res) {
   const city = 'Denver'
-  expedia.tripFind(city, ({activities}) => {
+  expedia.tripFind(city, (err, activities) => {
     res.send(activities.map(({title: name, duration='3h', distance='5 mi', imageUrl, fromPrice: price}) => {
       return {name, duration, price, location:city, distance, imageUrl }
     }))
@@ -111,24 +103,20 @@ function findTrips(req, res) {
 }
 
 // GET /api/trips/init/Denver
-function populateTripCollection(req, res){
+function populateTripCollection(req, res, next){
   const city = req.params.city
-  expedia.tripFind(city, ({activities}) => {
-    // res.send(activities)
-    async.mapSeries(activities, ({title: name, duration='3h', distance='5 mi', imageUrl, fromPrice: price}, next) => {
+  expedia.tripFind(city, (err, activities) => {
+    async.map(activities, (
+      {title: name, duration='3h', distance='5 mi', imageUrl, fromPrice: price}, cb) => {
       Trip.create(
         {name, duration, price, location:city, distance, imageUrl },
-        (err, trip) => {
-          if (err) return res.status(500).send(err)
-          // res.send(trip)
-          return console.log(trip)
-        })
+        cb)
+    }, (err, results) => {
+      if(err) {
+        return next(err)
+      }
+      res.status(200).send(results)
     })
-    // async.mapSeries(activities, expedia.tripDetails, (err, results) => {
-    //     let bigChunk = results.join("")
-    //     bigChunk = JSON.parse(bigChunk)
-    //     res.end(bigChunk)
-    // })
   })
 }
 
